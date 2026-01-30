@@ -1,5 +1,0 @@
-101|0|1200.50|1|0|WiFi,TV
-102|0|1200.50|1|1|WiFi,TV,Minibar
-103|1|1800.00|2|0|WiFi,TV,Safe
-104|1|1900.00|2|2|WiFi,TV,Minibar
-105|2|2500.00|4|0|WiFi,TV,ExtraBed

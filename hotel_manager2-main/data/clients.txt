@@ -1,4 +1,0 @@
-1001|Ivanov|Ivan|Ivanovich|+79991234567|ivanov@mail.ru
-1002|Petrov|Peter|Petrovich|+79992345678|petrov@gmail.com
-1003|Sidorova|Anna|Sergeevna|+79993456789|sidorova@yandex.ru
-1004|Kozlov|Alexey||+79994567890|kozlov@mail.ru
