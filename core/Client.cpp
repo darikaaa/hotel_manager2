@@ -1,6 +1,4 @@
-//
-// Created by Asus on 25.01.2026.
-//
+
 
 #include "Client.h"
 
@@ -66,8 +64,7 @@ std::vector<Client> Client::loadFromFile(const std::string& filename) {
     std::ifstream file(filename);
 
     if (!file.is_open()) {
-        std::cerr << "Cannot open file " << filename << std::endl;
-        return clients;
+        throw "Cannot open file";
     }
 
     std::string line;

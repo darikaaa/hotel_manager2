@@ -1,6 +1,4 @@
-//
-// Created by Asus on 25.01.2026.
-//
+
 #include <algorithm>
 #include "Room.h"
 #include <fstream>
@@ -125,14 +123,12 @@ std::vector<Room> Room::loadFromFile(const std::string& filename) {
     std::vector<Room> rooms;
     std::ifstream file(filename);
     if (!file.is_open()) {
-        throw std::runtime_error("Cannot open file: " + filename);
+        throw "Cannot open file";
     }
 
     std::string line;
-    int lineNumber = 0;
 
     while (std::getline(file, line)) {
-        lineNumber++;
 
         if (line.empty()) {
             continue;
@@ -147,7 +143,7 @@ std::vector<Room> Room::loadFromFile(const std::string& filename) {
         }
 
         if (parts.size() < 5) {
-            std::cerr << "Line " << lineNumber << ": Invalid format, skipping\n";
+            std::cerr << "Line " << line << ": Invalid format, skipping\n";
             continue;
         }
 
@@ -175,7 +171,7 @@ std::vector<Room> Room::loadFromFile(const std::string& filename) {
             }
             rooms.push_back(room);
         } catch (const std::exception& e) {
-            std::cerr << "Line " << lineNumber << ": Error - " << e.what() << "\n";
+            std::cerr << "Line " << line << ": Error - " << e.what() << "\n";
         }
     }
     return rooms;

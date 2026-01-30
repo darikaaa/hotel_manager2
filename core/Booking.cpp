@@ -1,6 +1,4 @@
-//
-// Created by Asus on 26.01.2026.
-//
+
 
 #include "Booking.h"
 #include <fstream>
@@ -88,7 +86,7 @@ void Booking::saveToFile(const std::vector<Booking>& bookings, const std::string
     std::ofstream file(filename);
 
     if (!file.is_open()) {
-        throw std::runtime_error("Cannot open file: " + filename);
+        throw "Cannot open file";
     }
 
     for (const Booking& booking : bookings) {
@@ -115,8 +113,7 @@ std::vector<Booking> Booking::loadFromFile(const std::string& filename) {
     std::ifstream file(filename);
 
     if (!file.is_open()) {
-        std::cerr << "Cannot open file " << filename << std::endl;
-        return bookings;
+        throw "Cannot open file";
     }
 
     std::string line;
@@ -142,8 +139,6 @@ std::vector<Booking> Booking::loadFromFile(const std::string& filename) {
 
         try {
             int id = std::stoi(parts[0]);
-            int roomId = std::stoi(parts[1]);
-            int clientId = std::stoi(parts[2]);
 
             std::string checkInStr = parts[3];
             size_t dot1 = checkInStr.find('.');

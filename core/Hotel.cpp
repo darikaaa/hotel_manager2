@@ -1,6 +1,3 @@
-//
-// Created by Asus on 27.01.2026.
-//
 
 #include "Hotel.h"
 #include <iostream>
@@ -97,11 +94,10 @@ bool Hotel::removeRoom(int roomNumber) {
                 }
             }
             rooms.erase(it);
-            std::cout << "Room №" << roomNumber << " deleted" << std::endl;
             return true;
         }
     }
-    std::cerr << "Room №" << roomNumber << " is not founded" << std::endl;
+    std::cerr << "Room №" << roomNumber << " is not found" << std::endl;
     return false;
 }
 Room* Hotel::findRoomById(int roomNumber) {
@@ -166,7 +162,7 @@ bool Hotel::createBooking(int clientId, int roomId, Date checkIn, Date checkOut,
         return false;
     }
     if (!isRoomAvailable(roomId, checkIn, checkOut)) {
-        std::cerr << "Room not available" << std::endl;
+        std::cerr << "Room is not available" << std::endl;
         return false;
     }
     int newId = bookings.empty() ? 1 : bookings.back().getBookingId() + 1;
@@ -182,8 +178,7 @@ bool Hotel::createBooking(int clientId, int roomId, Date checkIn, Date checkOut,
 bool Hotel::cancelBooking(int bookingId) {
     auto* booking = findBookingById(bookingId);
     if (!booking || booking->getStatus() != BookingStatus::Booked) {
-        std::cerr << "Cannot cancel booking" << std::endl;
-        return false;
+        throw "Cannot cancel booking";
     }
     booking->setStatus(BookingStatus::Canceled);
     return true;
@@ -192,8 +187,7 @@ bool Hotel::cancelBooking(int bookingId) {
 bool Hotel::checkIn(int bookingId) {
     auto* booking = findBookingById(bookingId);
     if (!booking || booking->getStatus() != BookingStatus::Booked) {
-        std::cerr << "Cannot check in" << std::endl;
-        return false;
+        throw "Cannot check in";
     }
 
     booking->checkIn();
@@ -206,8 +200,7 @@ bool Hotel::checkIn(int bookingId) {
 bool Hotel::checkOut(int bookingId) {
     auto* booking = findBookingById(bookingId);
     if (!booking || booking->getStatus() != BookingStatus::CheckedIn) {
-        std::cerr << "Cannot check out" << std::endl;
-        return false;
+        throw "Cannot check out";
     }
 
     booking->checkOut();

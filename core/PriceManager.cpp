@@ -9,7 +9,7 @@ double PriceManager::calculateOccupancyFactor(int availableRooms, int totalRooms
     if (occupancyRate < 0.3) {
         return 0.85;
     }
-    else if (occupancyRate > 0.7) {
+    if (occupancyRate > 0.7) {
         return 1.35;
     }
 
@@ -23,10 +23,10 @@ double PriceManager::calculateBookingFactor(Date checkIn, Date currentDate, int 
     if (daysUntilCheckIn >= 30) {
         return 0.8;
     }
-    else if (daysUntilCheckIn >= 7) {
+    if (daysUntilCheckIn >= 7) {
         return 1.0;
     }
-    else if (daysUntilCheckIn >= 1) {
+    if (daysUntilCheckIn >= 1) {
         if (availableRooms < 3) {
             return 1.5;
         }
@@ -38,6 +38,9 @@ double PriceManager::calculateBookingFactor(Date checkIn, Date currentDate, int 
 }
 
 double PriceManager::calculateSeasonFactor(Date date) {
+    if (isSummer(date) && isHoliday(date)) {
+        return 1.8;
+    }
     if (isSummer(date)) {
         return 1.4;
     }
@@ -51,7 +54,7 @@ double PriceManager::calculateLengthOfStayFactor(int nights) {
     if (nights >= 7) {
         return 0.8;
     }
-    else if (nights >= 3) {
+    if (nights >= 3) {
         return 0.9;
     }
     return 1.0;

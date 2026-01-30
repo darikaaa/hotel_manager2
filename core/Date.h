@@ -1,6 +1,3 @@
-//
-// Created by Asus on 25.01.2026.
-//
 
 #ifndef HOTEL_MANAGAR_DATE_H
 #define HOTEL_MANAGAR_DATE_H
